@@ -1,0 +1,54 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+</head>
+<body>
+	<h1>WELCOME TO KODEHIVE ACADEMY</h1>
+	<form id="form-add-mahasiswa" th:action="@{/mahasiswa/create}" method="post">
+		<table>
+			<tr>
+				<td>Kode Mahasiswa</td>
+				<td><input type="text" name="kodeMahasiswa" placeholder="Kode Mahasiswa"/></td>
+			</tr>
+			<tr>
+				<td>Nama Mahasiswa</td>
+				<td><input type="text" name="namaMahasiswa" placeholder="Nama Mahasiswa"/></td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td>
+					<input type="radio" name="jk" value="Pria"/> Pria
+					<input type="radio" name="jk" value="Wanita"/> Wanita
+				</td>
+			</tr>
+			<tr>
+				<td>Alamat</td>
+				<td>
+					<textarea name="alamat" rows="3" cols="21" placeholder="Masukkan Alamat"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td>
+					<select name="status">
+						<optgroup label="Pilih Status">
+							<option value="Tidak Ada">-</option>
+							<option value="Menikah">Menikah</option>
+							<option value="Belum Menikah">Belum Menikah</option>
+						</optgroup>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<button type="submit" value="submit">Save</button>&nbsp;
+					&nbsp;&nbsp; <input type="reset" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

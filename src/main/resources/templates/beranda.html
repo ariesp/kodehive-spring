@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Beranda</title>
 </head>
 <body>
-	<h2>INI ADALAH HALAMAN BERANDA</h2>
-	<h3>Selamat Berhasil Sudah Bisa Menjalankan Aplikasi Spring Boot</h3> 
-	<h3>Hore</h3>
+	<h2>WELCOME TO KODEHIVE ACADEMY</h2>
+	<ul>
+		<li>Username : <a th:text="${userLempar}"></a></li> 		
+	</ul>
+	<ul>
+		<li>
+			<a th:href="@{/}">Logout</a>
+		</li> 
+	</ul>
 </body>
 </html>
