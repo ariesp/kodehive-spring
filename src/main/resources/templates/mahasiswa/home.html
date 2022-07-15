@@ -42,10 +42,6 @@
 				<div class="modal-body">
 					<p>Modal body text goes here.</p>
 				</div>
-<!-- 					<div class="modal-footer"> -->
-<!-- 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-<!-- 						<button type="submit" class="btn btn-primary">Submit</button> -->
-<!-- 					</div> -->
 			</div>
 		</div>
 	</div>
@@ -102,7 +98,7 @@
 			dataType: 'html',
 			data: $(this).serialize(),
 			success: function (result) {
-				$('#modal-add-mahasiswa').hide();
+				$('#modal-add-mahasiswa').modal("hide");
 				refreshData();
 			}
 		});
@@ -118,7 +114,7 @@
 			data: $(this).serialize(),
 			success: function (result) {
 				alert("data berhasil diupdate");
-				$('#modal-add-mahasiswa').hide();
+				$('#modal-add-mahasiswa').modal("hide");
 				refreshData();
 			}
 		});
