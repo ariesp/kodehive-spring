@@ -12,10 +12,9 @@
 	<div>
 		<div>
 			<button type="button" id="btn-add">Add Data</button>
-<!-- 			<a th:href="@{/mahasiswa/add}">Add Data</a> -->
 		</div>
 		<br />
-		<table border="1">
+		<table border="1" class="table table-bordered">
 			<thead>
 				<tr>
 					<td>KODE</td>
@@ -23,29 +22,30 @@
 					<td>GENDER</td>
 					<td>ALAMAT</td>
 					<td>STATUS</td>
+					<td>ACTION</td>
 				</tr>
 			</thead>
 			<tbody id="list-mahasiswa">
 			</tbody>
 		</table>
-		<!-- modal 2 -->
-		<div class="modal fade" id="modal-add-mahasiswa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h2 class="modal-title" id="AddMahasiswa">Add Mahasiswa</h2>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<p>Modal body text goes here.</p>
-					</div>
+	</div>
+	<!-- modal 2 -->
+	<div class="modal fade" id="modal-add-mahasiswa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h2 class="modal-title" id="AddMahasiswa">Add Mahasiswa</h2>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Modal body text goes here.</p>
+				</div>
 <!-- 					<div class="modal-footer"> -->
 <!-- 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
 <!-- 						<button type="submit" class="btn btn-primary">Submit</button> -->
 <!-- 					</div> -->
-				</div>
 			</div>
 		</div>
 	</div>
@@ -58,12 +58,71 @@
 			url: '/kodehive/mahasiswa/add',
 			type: 'get',
 			dataType: 'html',
-			data: { kd_mhs },
 			success: function (result) {
 				$('#modal-add-mahasiswa').modal('show');
 				$('#modal-add-mahasiswa').find('.modal-body').html(result);
 			}
 		});
+	});
+	
+	refreshData();
+	
+	//Ajax list
+	function refreshData() {
+		$.ajax({
+			url: '/kodehive/mahasiswa/list',
+			type: 'get',
+			dataType: 'html',
+			success: function (result) {
+				$('#list-mahasiswa').html(result);
+			}
+		});
+	}
+	
+	//Ajax Update edit data
+	$('#list-mahasiswa').on('click', '#btn-edit', function () {
+		var kd_mhs = $(this).val();
+		$.ajax({
+			url: '/kodehive/mahasiswa/edit',
+			type: 'get',
+			dataType: 'html',
+			data: {kd_mhs},
+			success: function (result) {
+				$('#modal-add-mahasiswa').modal('show');
+				$('#modal-add-mahasiswa').find('.modal-body').html(result);
+			}
+		});
+	});
+	
+	//Ajax Create
+	$('#modal-add-mahasiswa').on('submit', '#form-add-mahasiswa', function () {
+		$.ajax({
+			url: '/kodehive/mahasiswa/create',
+			type: 'post',
+			dataType: 'html',
+			data: $(this).serialize(),
+			success: function (result) {
+				$('#modal-add-mahasiswa').hide();
+				refreshData();
+			}
+		});
+		return false;
+	});
+	
+	//Ajax Update
+	$('#modal-add-mahasiswa').on('submit', '#form-edit-mahasiswa', function () {
+		$.ajax({
+			url: '/kodehive/mahasiswa/update',
+			type: 'post',
+			dataType: 'html',
+			data: $(this).serialize(),
+			success: function (result) {
+				alert("data berhasil diupdate");
+				$('#modal-add-mahasiswa').hide();
+				refreshData();
+			}
+		});
+		return false;
 	});
 </script>
 </html>

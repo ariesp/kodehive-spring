@@ -6,32 +6,32 @@
 </head>
 <body>
 	<h1>WELCOME TO KODEHIVE ACADEMY</h1>
-	<form id="form-add-mahasiswa">
+	<form id="form-edit-mahasiswa">
 		<div class="form-group">
 			<label class="col-form-label">Kode Mahasiswa</label>
-			<input type="text" name="kodeMahasiswa" class="form-control"/>
+			<input type="text" name="kodeMahasiswa" class="form-control" th:value="${bingkisanEdit.kd_mhs}" readonly="readonly"/>
 		</div>
 		<div class="form-group">
 			<label class="col-form-label">Nama Mahasiswa</label>
-			<input type="text" name="namaMahasiswa" class="form-control"/>
+			<input type="text" name="namaMahasiswa" class="form-control" th:value="${bingkisanEdit.nm_mhs}"/>
 		</div>
 		<div class="form-group">
 			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="jk" id="inlineRadio1" value="Pria"/>
+				<input class="form-check-input" type="radio" name="jk" id="inlineRadio1" value="Pria" th:field="${bingkisanEdit.jk}"/>
 				<label class="form-check-label" for="inlineRadio1">Pria</label>
 				&nbsp;
-				<input class="form-check-input" type="radio" name="jk" id="inlineRadio2" value="Wanita"/>
+				<input class="form-check-input" type="radio" name="jk" id="inlineRadio2" value="Wanita" th:field="${bingkisanEdit.jk}"/>
 				<label class="form-check-label" for="inlineRadio2">Wanita</label>
 				&nbsp;
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="alamat-option">Alamat</label>
-			<textarea class="form-control" id="alamatMhs" rows="3" name="alamat"></textarea>
+			<textarea class="form-control" id="alamatMhs" rows="3" name="alamat" th:text="${bingkisanEdit.alamat}"></textarea>
 		</div>
 		<div class="form-group">
 			<label for="exampleFormControlSelect1">Status</label>
-			<select class="form-control" id="statusId" name="status">
+			<select class="form-control" id="statusId" name="status" th:field="${bingkisanEdit.status}">
 				<optgroup label="Pilih Status">
 					<option value="Tidak Ada">-</option>
 					<option value="Menikah">Menikah</option>

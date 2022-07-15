@@ -7,7 +7,7 @@ import id.kodehive.springmvc.model.MahasiswaModel;
 
 public interface MahasiswaRepository extends JpaRepository<MahasiswaModel, String> {
 	
-	@Query("SELECT P FROM MahasiswaModel P WHERE P.kd_mhs = ?1 AND P.nm_mhs = ?2")
-	MahasiswaModel cariKodeMhs(String kd_mhs, String nm_mhs);
+	@Query("SELECT P FROM MahasiswaModel P WHERE P.kd_mhs = ?1")
+	MahasiswaModel cariKodeMhs(String kd_mhs);
 	
 }
