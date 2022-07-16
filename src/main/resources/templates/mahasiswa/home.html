@@ -19,6 +19,7 @@
 				<tr>
 					<td>KODE</td>
 					<td>MAHASISWA</td>
+					<td>JURUSAN</td>
 					<td>GENDER</td>
 					<td>ALAMAT</td>
 					<td>STATUS</td>
@@ -33,12 +34,6 @@
 	<div class="modal fade" id="modal-add-mahasiswa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h2 class="modal-title" id="AddMahasiswa">Add Mahasiswa</h2>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
 				<div class="modal-body">
 					<p>Modal body text goes here.</p>
 				</div>
@@ -120,5 +115,37 @@
 		});
 		return false;
 	});
+	
+	//Ajax Pop-up delete data
+	$('#list-mahasiswa').on('click', '#btn-hapus', function () {
+		var kd_mhs = $(this).val();
+		$.ajax({
+			url: '/kodehive/mahasiswa/remove',
+			type: 'get',
+			dataType: 'html',
+			data: {kd_mhs},
+			success: function (result) {
+				$('#modal-add-mahasiswa').modal('show');
+				$('#modal-add-mahasiswa').find('.modal-body').html(result);
+			}
+		});
+	});
+	
+	//Ajax Delete
+	$('#modal-add-mahasiswa').on('submit', '#form-delete-mahasiswa', function () {
+		$.ajax({
+			url: '/kodehive/mahasiswa/delete',
+			type: 'post',
+			dataType: 'html',
+			data: $(this).serialize(),
+			success: function (result) {
+				alert("data berhasil dihapus");
+				$('#modal-add-mahasiswa').modal("hide");
+				refreshData();
+			}
+		});
+		return false;
+	});
+	
 </script>
 </html>

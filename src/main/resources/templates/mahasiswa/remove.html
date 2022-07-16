@@ -1,0 +1,16 @@
+<body>
+	<div class="modal-header">
+		<h2 class="modal-title" id="AddMahasiswa">Delete Mahasiswa</h2>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="form-horizontal">
+		<form action="#" method="get" id="form-delete-mahasiswa">
+			<p>Are you sure to delete this data?</p>
+			<input type="hidden" id="code" name="kodeMahasiswa" th:value="${bingkisanDelete.kd_mhs}" />
+			<button type="reset" data-dismiss="modal" class="btn btn-warning">No</button>
+			<button type="submit" class="btn btn-danger">Yes</button>			
+		</form>
+	</div>	
+</body>

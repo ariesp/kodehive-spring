@@ -3,6 +3,8 @@ package id.kodehive.springmvc.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +26,11 @@ public class MahasiswaModel {
 
 	@Column(name = "STATUS")
 	private String status;
+	
+	@ManyToOne
+	@JoinColumn(name = "KODE_JURUSAN", nullable = true)
+	
+	private JurusanModel jurusanModel;
 
 	public String getKd_mhs() {
 		return kd_mhs;
@@ -63,6 +70,14 @@ public class MahasiswaModel {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public JurusanModel getJurusanModel() {
+		return jurusanModel;
+	}
+
+	public void setJurusanModel(JurusanModel jurusanModel) {
+		this.jurusanModel = jurusanModel;
 	}
 
 }

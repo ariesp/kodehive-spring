@@ -22,12 +22,16 @@ public class MahasiswaService {
 		mahasiswaRepository.save(mahasiswaModel);
 	}
 	
+	public void deleteMahasiswa(MahasiswaModel mahasiswaModel) {
+		mahasiswaRepository.delete(mahasiswaModel);
+	}
+	
 	public MahasiswaModel cariPrimaryKey(String kdMhs) {
 		return mahasiswaRepository.cariKodeMhs(kdMhs);
 	}
 	
 	public List<MahasiswaModel> bacaData() {
-		return mahasiswaRepository.findAll();
+		return mahasiswaRepository.findAllOrderByNamaMahasiswa();
 	}
 	
 }
