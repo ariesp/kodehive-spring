@@ -27,6 +27,9 @@
 				</tr>
 			</thead>
 			<tbody id="list-mahasiswa">
+				<div id="pesan-error" th:if="${error != null}">
+					Data tidak bisa disubmit karena: <p class="text-red" th:text="${error}"/>		
+				</div>
 			</tbody>
 		</table>
 	</div>

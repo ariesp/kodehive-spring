@@ -17,7 +17,7 @@ import id.kodehive.springmvc.service.MahasiswaService;
 
 @Controller
 public class MahasiswaController {
-	
+
 	@Autowired
 	private MahasiswaService mahasiswaService;
 	
@@ -42,8 +42,18 @@ public class MahasiswaController {
 	
 	// untuk ajax yang memanggil action
 	@RequestMapping("/mahasiswa/create")
-	public String create(HttpServletRequest request) {
+	public String create(HttpServletRequest request, Model model) {
+		String home = "/mahasiswa/home";
+
 		String kodeMahasiswa = request.getParameter("kodeMahasiswa");
+		if (kodeMahasiswa == null || kodeMahasiswa.isEmpty()) {
+			// FIXME: hapus ini dan tampilkan di bagian view
+			System.err.println("kode mahasiswa wajid diisi");
+			
+			model.addAttribute("error", "kode mahasiswa wajid diisi");
+			return home;
+		}
+		
 		String namaMahasiswa = request.getParameter("namaMahasiswa");
 		String alamat = request.getParameter("alamat");
 		String jenisKelamin = request.getParameter("jk");
@@ -63,7 +73,6 @@ public class MahasiswaController {
 		
 		mahasiswaService.saveMahasiswa(mahasiswaModel);
 		
-		String home = "/mahasiswa/home";
 		return home;
 	}
 	
