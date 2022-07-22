@@ -46,14 +46,6 @@ public class MahasiswaController {
 		String home = "/mahasiswa/home";
 
 		String kodeMahasiswa = request.getParameter("kodeMahasiswa");
-		if (kodeMahasiswa == null || kodeMahasiswa.isEmpty()) {
-			// FIXME: hapus ini dan tampilkan di bagian view
-			System.err.println("kode mahasiswa wajid diisi");
-			
-			model.addAttribute("error", "kode mahasiswa wajid diisi");
-			return home;
-		}
-		
 		String namaMahasiswa = request.getParameter("namaMahasiswa");
 		String alamat = request.getParameter("alamat");
 		String jenisKelamin = request.getParameter("jk");
@@ -68,8 +60,10 @@ public class MahasiswaController {
 		mahasiswaModel.setStatus(status);
 		
 		// set data jurusan
-		JurusanModel jurusanModel = jurusanService.cariKodeJurusan(kodeJurusan);
-		mahasiswaModel.setJurusanModel(jurusanModel);
+		if (kodeJurusan == null || !kodeJurusan.isEmpty()) {
+			JurusanModel jurusanModel = jurusanService.cariKodeJurusan(kodeJurusan);
+			mahasiswaModel.setJurusanModel(jurusanModel);
+		}
 		
 		mahasiswaService.saveMahasiswa(mahasiswaModel);
 		
@@ -94,8 +88,10 @@ public class MahasiswaController {
 		mahasiswaModel.setStatus(status);
 		
 		// set data jurusan
-		JurusanModel jurusanModel = jurusanService.cariKodeJurusan(kodeJurusan);
-		mahasiswaModel.setJurusanModel(jurusanModel);
+		if (kodeJurusan == null || !kodeJurusan.isEmpty()) {
+			JurusanModel jurusanModel = jurusanService.cariKodeJurusan(kodeJurusan);
+			mahasiswaModel.setJurusanModel(jurusanModel);
+		}
 		
 		mahasiswaService.updateMahasiswa(mahasiswaModel);
 		
