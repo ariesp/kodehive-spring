@@ -1,7 +1,7 @@
 <tr th:each="mahasiswa : ${bingkisanBacaData}">
 	<td><a th:text="${mahasiswa.kd_mhs}"></a></td>
 	<td><a th:text="${mahasiswa.nm_mhs}"></a></td>
-	<td><a th:text="${mahasiswa.jurusanModel.namaJurusan}"></a></td>
+	<td><a th:if="${mahasiswa.jurusanModel != null}" th:text="${mahasiswa.jurusanModel.namaJurusan}"></a></td>
 	<td><a th:text="${mahasiswa.jk}"></a></td>
 	<td><a th:text="${mahasiswa.alamat}"></a></td>
 	<td><a th:text="${mahasiswa.status}"></a></td>
